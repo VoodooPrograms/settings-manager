@@ -1,0 +1,29 @@
+{
+    "name": "quetzal/settings-manager",
+    "description": "Utility manager for loading different settings files with different formats",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "VoodooPrograms"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Quetzal\\SettingsManager": "src/"
+        }
+    },
+    "autoload-dev": {
+        "Quetzal\\SettingsManager\\Tests\\": "tests/"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "require": {
+        "php": "^7.0",
+        "symfony/yaml": "^5.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}

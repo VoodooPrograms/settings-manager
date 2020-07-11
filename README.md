@@ -1,2 +1,2 @@
 # settings-manager
-Utility manager for loading diffrent settings files with diffrent formats
+Utility manager for loading different settings files with diffrent formats
