@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Quetzal\\SettingsManager": "src/"
+            "Quetzal\\SettingsManager\\": "src/"
         }
     },
     "autoload-dev": {
@@ -20,7 +20,10 @@
     },
     "require": {
         "php": "^7.0",
-        "symfony/yaml": "^5.0"
+        "subjective-php/spl-types": "^3.0",
+        "symfony/yaml": "^5.0",
+        "ext-simplexml": "*",
+        "ext-json": "*"
     },
     "config": {
         "sort-packages": true,
