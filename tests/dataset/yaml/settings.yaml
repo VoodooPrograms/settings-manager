@@ -1,0 +1,15 @@
+driver: mysql
+
+drivers:
+
+    sqlite:
+        database: database.sqlite
+        prefix:
+
+    mysql:
+        host: localhost
+        database: db2
+        username: user
+        password: pass
+        charset: utf8
+        prefix:

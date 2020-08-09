@@ -4,13 +4,11 @@
 namespace Quetzal\SettingsManager\Loaders;
 
 
-use Symfony\Component\Yaml\Yaml;
-
-class YamlParser implements IParser
+class JsonParser implements IParser
 {
 
     public function parse(string $context): array
     {
-        return Yaml::parse($context);
+        return json_decode($context, true);
     }
 }
