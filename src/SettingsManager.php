@@ -5,14 +5,12 @@ namespace Quetzal\SettingsManager;
 
 
 use Quetzal\SettingsManager\Loaders\Loaders;
-use Quetzal\SettingsManager\Loaders\XmlParser;
-use Quetzal\SettingsManager\Loaders\YamlParser;
 
 class SettingsManager implements \ArrayAccess
 {
-    public const SETTINGS_DIR_PATH = "../../Config";
-    public const DEFAULT_SETTINGS_FILENAME = "settings";
-    public const DEFAULT_SETTINGS_LOADER = Loaders::YAML;
+    public static string $settings_dir_path = __DIR__."/../../Config/";
+    public static string $default_settings_filename = "settings";
+    public static string $default_settings_loader = Loaders::YAML;
 
 
     /**
@@ -34,18 +32,23 @@ class SettingsManager implements \ArrayAccess
 
     // Load everything with default values
     public static function init() {
-
+        $settings = self::load(self::$settings_dir_path . self::$default_settings_filename);
+        return $settings;
     }
 
     private function loadArray(array $filenames) {
         foreach ($filenames as $filename) {
-            $this->settings->append($this->load($filename));
+            $config = $this->load($filename);
+            foreach ($config as $key => $value) {
+                $configs[$key] = $value;
+            }
         }
+        return $configs;
     }
 
     private function load(string $filename, int $depth = 0) {
         if (!file_exists($filename)) {
-            throw new \Exception("File does not exists");
+            throw new \Exception("File ".$filename." does not exists");
         }
         if (empty($filename)) {
             throw new \Exception("Empty filename");
@@ -79,6 +82,10 @@ class SettingsManager implements \ArrayAccess
             return $arr;
             // use default loader
         }
+    }
+
+    private function getFilename(string $path): string {
+        return pathinfo($path)['filename'];
     }
 
     private function resolveParser(\SplFileInfo $file): Loaders {
