@@ -5,14 +5,12 @@ namespace Quetzal\SettingsManager;
 
 
 use Quetzal\SettingsManager\Loaders\Loaders;
-use Quetzal\SettingsManager\Loaders\XmlParser;
-use Quetzal\SettingsManager\Loaders\YamlParser;
 
 class SettingsManager implements \ArrayAccess
 {
-    public const SETTINGS_DIR_PATH = "../../Config";
-    public const DEFAULT_SETTINGS_FILENAME = "settings";
-    public const DEFAULT_SETTINGS_LOADER = Loaders::YAML;
+    public static string $settings_dir_path = __DIR__."/../../Config/";
+    public static string $default_settings_filename = "settings.yaml";
+    public static string $default_settings_loader = Loaders::YAML;
 
 
     /**
@@ -34,18 +32,23 @@ class SettingsManager implements \ArrayAccess
 
     // Load everything with default values
     public static function init() {
-
+        $settings = new self(self::$settings_dir_path . self::$default_settings_filename);
+        return $settings;
     }
 
     private function loadArray(array $filenames) {
         foreach ($filenames as $filename) {
-            $this->settings->append($this->load($filename));
+            $config = $this->load($filename);
+            foreach ($config as $key => $value) {
+                $configs[$key] = $value;
+            }
         }
+        return $configs;
     }
 
     private function load(string $filename, int $depth = 0) {
         if (!file_exists($filename)) {
-            throw new \Exception("File does not exists");
+            throw new \Exception("File ".$filename." does not exists");
         }
         if (empty($filename)) {
             throw new \Exception("Empty filename");
@@ -81,12 +84,65 @@ class SettingsManager implements \ArrayAccess
         }
     }
 
+    private function getFilename(string $path): string {
+        return pathinfo($path)['filename'];
+    }
+
     private function resolveParser(\SplFileInfo $file): Loaders {
         $className = ucfirst($file->getExtension());
     }
 
     public function getSettings() :array {
         return $this->settings;
+    }
+
+
+    /**
+     * @return string
+     */
+    public static function getSettingsDirPath(): string
+    {
+        return self::$settings_dir_path;
+    }
+
+    /**
+     * @param string $settings_dir_path
+     */
+    public static function setSettingsDirPath(string $settings_dir_path): void
+    {
+        self::$settings_dir_path = $settings_dir_path;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getDefaultSettingsFilename(): string
+    {
+        return self::$default_settings_filename;
+    }
+
+    /**
+     * @param string $default_settings_filename
+     */
+    public static function setDefaultSettingsFilename(string $default_settings_filename): void
+    {
+        self::$default_settings_filename = $default_settings_filename;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getDefaultSettingsLoader(): string
+    {
+        return self::$default_settings_loader;
+    }
+
+    /**
+     * @param string $default_settings_loader
+     */
+    public static function setDefaultSettingsLoader(string $default_settings_loader): void
+    {
+        self::$default_settings_loader = $default_settings_loader;
     }
 
     /**

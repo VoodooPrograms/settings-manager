@@ -19,14 +19,10 @@
         "phpunit/phpunit": "*"
     },
     "require": {
-        "php": "^7.0",
+        "php": "^7.4",
         "subjective-php/spl-types": "^3.0",
         "symfony/yaml": "^5.0",
         "ext-simplexml": "*",
         "ext-json": "*"
-    },
-    "config": {
-        "sort-packages": true,
-        "optimize-autoloader": true
     }
 }

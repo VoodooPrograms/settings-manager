@@ -3,7 +3,6 @@
 
 namespace Quetzal\SettingsManager\Tests;
 
-
 use PHPUnit\Framework\TestCase;
 use Quetzal\SettingsManager\SettingsManager;
 
@@ -56,7 +55,37 @@ class SettingsManagerTest extends TestCase
         $this->assertIsArray($smanager["settings"]);
         $this->assertNotNull($smanager["settings"]["driver"]);
         $this->assertEquals($smanager["settings"]["driver"], "mysql");
-
     }
 
+    public function testLoadSinglePHPFile(){
+        $smanager = new SettingsManager("tests/dataset/php/settings.php");
+        $this->assertNotNull($smanager);
+        $this->assertNotNull($smanager["settings"]);
+        $this->assertIsArray($smanager->getSettings());
+        $this->assertIsArray($smanager["settings"]);
+        $this->assertNotNull($smanager["settings"]["driver"]);
+        $this->assertEquals($smanager["settings"]["driver"], "mysql");
+    }
+
+    public function testExceptionOnSinglePHPFile(){
+        $this->expectException(\Exception::class);
+        $smanager = new SettingsManager("tests/dataset/php/settings_not_array.php");
+    }
+
+    public function testLoadFromArrayOfFiles(){
+        $smanager = new SettingsManager(["tests/dataset/dir/settings1.yaml", "tests/dataset/dir/settings3.yaml"]);
+        $this->assertNotNull($smanager);
+        $this->assertNotNull($smanager["settings1"]);
+        $this->assertNotNull($smanager["settings3"]);
+        $this->assertIsArray($smanager->getSettings());
+        $this->assertIsArray($smanager["settings1"]);
+        $this->assertNotNull($smanager["settings1"]["driver"]);
+        $this->assertEquals($smanager["settings1"]["driver"], "mysql");
+    }
+
+    public function testInitWithDefaultValues(){
+        SettingsManager::$settings_dir_path = 'tests/dataset/yaml/';
+        $settings = SettingsManager::init();
+        $this->assertNotNull($settings);
+    }
 }

@@ -1,17 +1,15 @@
 Current supported features:
 
-  * Load and Parse config files(XML, YAML)
+  * Load and Parse config files(XML, YAML, JSON, PHP[array])
   * Load and Parse config files from directory
   * Add depth option while loading from directory
   * Every file is stored under key with his filename(w/ suffix)
+  * Load and Parse with default configuration
+  * Add methods to change default configuartion
   
 Under implementation:
   
-  * Load and Parse JSON, INI, PHP
-  * Load and Parse with default configuration
-  * Load config from array
-  * Add methods to change default configuartion
-  * Add option for desirable formats of config files
+  * Load and Parse INI
   * Add Opcache support 
   * Add tests data 
   * Add unit tests and component tests
