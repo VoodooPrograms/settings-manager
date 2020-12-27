@@ -9,11 +9,11 @@
     ],
     "autoload": {
         "psr-4": {
-            "Quetzal\\SettingsManager\\": "src/"
+            "SM\\SettingsManager\\": "src/"
         }
     },
     "autoload-dev": {
-        "Quetzal\\SettingsManager\\Tests\\": "tests/"
+        "SM\\SettingsManager\\Tests\\": "tests/"
     },
     "require-dev": {
         "phpunit/phpunit": "*"

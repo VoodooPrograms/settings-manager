@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Quetzal\SettingsManager\Loaders;
+namespace SM\SettingsManager\Loaders;
 
 
 
-use Quetzal\SettingsManager\Utils\Enumerate;
+use SM\SettingsManager\Utils\Enumerate;
 
 class Loaders extends Enumerate
 {

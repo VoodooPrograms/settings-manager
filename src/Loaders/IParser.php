@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Quetzal\SettingsManager\Loaders;
+namespace SM\SettingsManager\Loaders;
 
 
 interface IParser

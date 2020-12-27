@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Quetzal\SettingsManager\Tests;
+namespace SM\SettingsManager\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Quetzal\SettingsManager\SettingsManager;
+use SM\SettingsManager\SettingsManager;
 
 class SettingsManagerTest extends TestCase
 {

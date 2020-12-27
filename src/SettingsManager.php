@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Quetzal\SettingsManager;
+namespace SM\SettingsManager;
 
 
-use Quetzal\SettingsManager\Loaders\Loaders;
+use SM\SettingsManager\Loaders\Loaders;
 
 class SettingsManager implements \ArrayAccess
 {
-    public static string $settings_dir_path = __DIR__."/../../Config/";
+    public static string $settings_dir_path = __DIR__."Config/";
     public static string $default_settings_filename = "settings.yaml";
     public static string $default_settings_loader = Loaders::YAML;
 
@@ -67,7 +67,7 @@ class SettingsManager implements \ArrayAccess
 //                        $this->load($file->getPathname());
 //                        echo $file->getPathname().PHP_EOL;
                         $setname = $file->getFileInfo()->getBasename(".".$file->getExtension());
-                        $parserClassPath = "Quetzal\\SettingsManager\\Loaders\\".ucfirst($file->getExtension())."Parser";
+                        $parserClassPath = "SM\\SettingsManager\\Loaders\\".ucfirst($file->getExtension())."Parser";
                         $parser = new $parserClassPath();
                         $configs[$setname] = $parser->parse(file_get_contents($file->getPathname()));
                     }
@@ -75,7 +75,7 @@ class SettingsManager implements \ArrayAccess
             }
             return $configs;
         } else {
-            $parserClassPath = "Quetzal\\SettingsManager\\Loaders\\".ucfirst($file->getExtension())."Parser";
+            $parserClassPath = "SM\\SettingsManager\\Loaders\\".ucfirst($file->getExtension())."Parser";
             $parser = new $parserClassPath();
             $setname = $file->getFileInfo()->getBasename(".".$file->getExtension());
             $arr[$setname] = $parser->parse(file_get_contents($filename));

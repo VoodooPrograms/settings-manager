@@ -1,6 +1,6 @@
 <?php
 
-use Quetzal\SettingsManager\SettingsManager;
+use SM\SettingsManager\SettingsManager;
 
 require_once "vendor/autoload.php";
 
@@ -23,5 +23,5 @@ $array = [
 ];
 
 //var_dump(SettingsManager::init());
-$smanager = new Quetzal\SettingsManager\SettingsManager($array);
+$smanager = new SM\SettingsManager\SettingsManager($array);
 var_dump($smanager->getSettings());

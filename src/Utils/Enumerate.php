@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Quetzal\SettingsManager\Utils;
+namespace SM\SettingsManager\Utils;
 
 
 abstract class Enumerate
