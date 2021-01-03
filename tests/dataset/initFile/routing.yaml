@@ -1,0 +1,52 @@
+#
+# TODO
+# For testing purpose we need to make huge routing file table consists of all possibility cases
+# To do that I propose make .csv file and write special class for that which will implements Iterator interface
+# Example: https://stackoverflow.com/questions/10646105/how-to-use-a-csv-file-in-phpunit-test
+#
+#
+routing:
+    homepage:
+        path: /
+        class: Quetzal\User\Controllers\SimpleController
+        action: index
+        method: GET
+    blog:
+        path: /blog/art
+        class: Quetzal\User\Controllers\BlogController
+        action: index
+        method: GET
+    blog_article:
+        path: /blog
+        class: Quetzal\User\Controllers\BlogController
+        action: index
+        method: GET
+    blog_page:
+        path: /blog/{Number}
+        class: Quetzal\User\Controllers\BlogController
+        action: index
+        method: GET
+    blog_page_string:
+        path: /blog/{String}
+        class: Quetzal\User\Controllers\BlogController
+        action: index
+        method: GET
+    blog_page_test1:
+        path: /blog/blog/*/*
+        class: Quetzal\User\Controllers\BlogController
+        action: index
+        method: GET
+    admin:
+        path: /admin
+        class: Quetzal\User\Controllers\SimpleController
+        action: index
+        method: GET
+
+
+
+#base_path: /blog
+#
+#routes:
+#    index: [/index, someClass.indexAction, GET]
+#    contact: [/contact, Quetzal\User\Controllers\BlogController.index2, GET]
+#    about: [/about, someClass.aboutAction, GET]

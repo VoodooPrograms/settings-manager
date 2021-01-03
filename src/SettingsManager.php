@@ -31,7 +31,10 @@ class SettingsManager implements \ArrayAccess
     }
 
     // Load everything with default values
-    public static function init() {
+    public static function init(string $initFile = null) {
+        if (isset($initFile)) {
+            return self::loadFromInitFile($initFile);
+        }
         $settings = new self(self::$settings_dir_path . self::$default_settings_filename);
         return $settings;
     }
@@ -48,7 +51,7 @@ class SettingsManager implements \ArrayAccess
 
     private function load(string $filename, int $depth = 0) {
         if (!file_exists($filename)) {
-            throw new \Exception("File ".$filename." does not exists");
+            throw new \Exception("File ".$filename." does not exists in: " . self::$settings_dir_path);
         }
         if (empty($filename)) {
             throw new \Exception("Empty filename");
@@ -82,6 +85,16 @@ class SettingsManager implements \ArrayAccess
             return $arr;
             // use default loader
         }
+    }
+
+    public static function loadFromInitFile(string $file) {
+        $sm = new SettingsManager($file);
+        $paths = [];
+        foreach ($sm['settings'] as $path) {
+            $paths += $path;
+        }
+        $sm = new SettingsManager($paths);
+        return $sm;
     }
 
     private function getFilename(string $path): string {

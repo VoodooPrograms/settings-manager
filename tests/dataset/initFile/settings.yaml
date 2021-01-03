@@ -1,0 +1,3 @@
+settings:
+    routing_path: "tests/dataset/initFile/routing.yaml"
+    database_path: "tests/dataset/initFile/config.yaml"
