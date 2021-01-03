@@ -83,18 +83,6 @@ class SettingsManagerTest extends TestCase
         $this->assertEquals($smanager["settings1"]["driver"], "mysql");
     }
 
-    public function testInitWithDefaultValues(){
-        SettingsManager::$settings_dir_path = 'tests/dataset/yaml/';
-        $settings = SettingsManager::init();
-        $this->assertNotNull($settings);
     }
 
-    public function testInitFromInitFile() {
-        SettingsManager::$settings_dir_path = 'tests/dataset/initFile/';
-        $settings = SettingsManager::loadFromInitFile('tests/dataset/initFile/settings.yaml');
-        $this->assertNotNull($settings['routing']['routing']);
-        $this->assertIsArray($settings['routing']['routing']);
-        $this->assertNotNull($settings['config']['config']);
-        $this->assertIsArray($settings['config']['config']);
-    }
 }
